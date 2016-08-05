@@ -1,0 +1,59 @@
+<html>
+<head>
+
+<style>
+button {
+	position: fixed;
+	background: red;
+	width: 50px;
+	height: 50px;
+}
+</style>
+
+</head>
+<body>
+
+	<button id="target"></button>button>
+
+	<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+	<script>
+  	// Initialize Firebase
+  	var config = {
+    	apiKey: "AIzaSyAjuqUmll9viw4o0iL6yh9HlArx8CTfY-g",
+    	authDomain: "cookie-clicker-b2d07.firebaseapp.com",
+    	databaseURL: "https://cookie-clicker-b2d07.firebaseio.com",
+    	storageBucket: ""
+  	};
+  	firebase.initializeApp(config);
+	</script>
+
+	<script>
+	var button = document.getElementById("target");
+	var database = firebase.database();
+
+	var width = 1000;
+	var height = 800;
+
+	button.onclick = function() {
+		var randomWidth = (Math.random() * width);
+		var randomHeight = (Math.random() * height);
+		database.ref("x").set(randomWidth);
+		database.ref("y").set(randomHeight);
+
+		database.ref("Ashwin").once("value", function(data) {
+			database.ref("Ashwin").set(data.val() + 1);
+		});
+	};
+
+	database.ref("x").on("value", function(data) {
+		button.style.left = data.val() + "px";
+	});
+
+	database.ref("y").on("value", function(data) {
+		button.style.top = data.val() + "px";
+	});
+
+	</script>
+
+</body>
+</html>

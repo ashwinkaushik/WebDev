@@ -1,0 +1,42 @@
+$(document).ready(function() {
+
+var database = firebase.database();
+
+// Hides the name panel, shows the game panel
+function startGame() {
+
+}
+
+// Puts a new secret number into the database
+function createSecret() {
+
+}
+
+// Responds with the given text.
+function response(text) {
+    $('.game-panel input').attr('placeholder', text);
+}
+
+response('too high');
+
+// Guess a number by retrieving it from the database,
+// and comparing it to the current one.
+function guess(number) {
+
+}
+
+// When the time is up then do this
+function timeUp() {
+
+}
+
+// Count down
+var timer = 60;
+setInterval(function() {
+    if (timer > 0)
+        timer--;
+    else
+        timeUp();
+}, 1000);
+
+});

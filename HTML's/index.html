@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <style>
+    html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    body {
+        position: relative;
+    }
+    #chat p, #input, #sidebar p {
+        font-family: "Gill Sans","Gill Sans MT",Calibri,sans-serif;
+    }
+
+    #sidebar {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 200px;
+        background: #336699;
+    }
+     #sidebar p {
+         color: #ffffff;
+         text-align: right;
+         padding-right: 20px;
+         font-size: 20px;
+     }
+    #chat {
+        position: absolute;
+        top: 40px;
+        right: 0px;
+        bottom: 0px;
+        left: 200px;
+        background: #f0f0f0;
+        padding: 20px;
+    }
+    #chat p {
+        font-size:20px;
+        margin: 5px 0px;
+    }
+    #input {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        height: 40px;
+        left: 200px;
+        width: 100%;
+        background:#ffffff;
+        font-size: 20px;
+        box-shadow: 0 10px 10px -10px #000000;
+        border:none;
+        padding-left: 20px;
+    }
+    #input:focus {
+        background:#fafafa;
+        outline: none;
+
+    }
+    </style>
+
+</head>
+<body>
+
+<div id="sidebar">
+    <p>
+        Ashwin
+    </p>
+</div>
+<div id="chat">
+<p>
+    <strong>Ashwin:</strong>
+    This is a cool instant messenger!
+</p>
+<p>
+    <strong>Arjun:</strong>
+    I want some instant coffee.
+</p>
+</div>
+<input id="input">
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAjuqUmll9viw4o0iL6yh9HlArx8CTfY-g",
+        authDomain: "cookie-clicker-b2d07.firebaseapp.com",
+        databaseURL: "https://cookie-clicker-b2d07.firebaseio.com",
+        storageBucket: ""
+      };
+      firebase.initializeApp(config);
+    </script>
+
+    <script>
+    var database = firebase.database();
+    var messageRef = database.ref("message");
+    var userRef = database.ref("user");
+    var input = document.getElementById("input");
+    var chat = document.getElementById("chat");
+
+    input.onkeydown = function(e) {
+        if (e.which == 13 && input = messageRef.push();
+
+            newMessage.set( {
+                name: "Ashwin",
+                message input.value
+            })
+            input.value = "";
+        }
+    };
+
+    messageRef.on('child_added', function(newChild) {
+        var childData = newChildval();
+        if (childData.message.length > 0) {
+            addMessage(childData.name, childData.message);
+        }
+    });
+
+    function addMessage(name, message) {
+
+        var p = document.createElement("p");
+        var strong = document.createElement("strong");
+
+        var nameText = document.createTextNode(name + ": ");
+        var messageText = document.createTextNode(message);
+
+        strong.appendChild(nameText);
+        p.appendChild(strong);
+        p.appendChild(messageText);
+
+        chat.insertBefore(p, chat.firstChild);
+    }
+
+    </script>
+
+</body>
+</html>

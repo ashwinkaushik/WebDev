@@ -1,0 +1,81 @@
+<html>
+<head>
+
+	<style>
+
+	button {
+		position: fixed;
+		top: 100px;
+		left: 100px;
+
+		background: none;
+		border: none;
+	}
+
+	button:focus {
+		outline: none;
+	}
+
+	button img {
+		width: 400px;
+	}
+
+	button .count {
+		font-size:200px;
+		margin-top:-320px;
+	}
+
+
+	</style>
+
+</head>
+<body>
+
+<reset>
+
+</reset>
+
+<button id="cookie">
+	<img src="http://vignette1.wikia.nocookie.net/creepypasta/images/8/81/Panel-cookie-choc-cookie.png/revision/latest?cb=20160111144002">
+	<div id="count" class ="count">0</div>
+</button>
+
+<script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAjuqUmll9viw4o0iL6yh9HlArx8CTfY-g",
+    authDomain: "cookie-clicker-b2d07.firebaseapp.com",
+    databaseURL: "https://cookie-clicker-b2d07.firebaseio.com",
+    storageBucket: ""
+  };
+  firebase.initializeApp(config);
+</script>
+
+<script>
+
+var count = document.getElementById("count");
+var cookie = document.getElementById("cookie");
+var clicks = 0;
+var database = firebase.database();
+var myDatabase = database.ref('Ashwin');
+
+function gotData(data) {
+	clicks = data.val();
+	count.innerHTML = clicks;
+}
+
+myDatabase.once('value', gotData);
+
+function cookieClicked() {
+	clicks += 1;
+	count.innerHTML = clicks;
+
+	myDatabase.set(clicks);
+}
+	cookie.onclick = cookieClicked;
+
+</script>
+
+</body>
+</html>

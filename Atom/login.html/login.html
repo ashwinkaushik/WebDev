@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="login.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.css"/>
+        <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+    </head>
+    <body>
+        <div class="login">
+            <p class="logo">Login to Hacks R'Us</p>
+            <input class="email" type="email" placeholder="email address">
+            <input class="password" type="password" placeholder="password">
+            <button class="signin">login</button>
+            <button class="signup">create account</button>
+            <button class="forgot">forgot password?</button>
+        </div>
+
+        <div class="app" style="display:none">
+            <div id="firepad"></div>
+            <button class="logout">logout</button>
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.2.0/codemirror.js"></script>
+        <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyCpnG1Lh20cZTZdxqBCRi9u_gwkFgZrDvk",
+            authDomain: "poopio-e40e6.firebaseapp.com",
+            databaseURL: "https://poopio-e40e6.firebaseio.com",
+            storageBucket: "",
+          };
+          firebase.initializeApp(config);
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="login.js"></script>
+    </body>
+</html>

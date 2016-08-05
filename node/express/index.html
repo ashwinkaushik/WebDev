@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>Guess a number!</h1>
+        <input id="guess" placeholder="guess">
+        <button id="submit">submit</button>
+        <button id="reset">reset</button>
+        <p id="response"></p>
+
+        <script>
+        var guess = document.getElementById('guess');
+        var button = document.getElementById('submit');
+        var resetButton = document.getElementById('reset');
+        var response = document.getElementById('response');
+        guess.focus();
+        function get(url, callback) {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+                   if (xmlhttp.status == 200) {
+                      callback(xmlhttp.responseText);
+                   }
+                   else {
+                       callback(xmlhttp.status);
+                   }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        };
+        get('/some/url', function(response) {
+            console.log(response);
+        });
+        button.onclick = function() {
+            get('/guess/' + guess.value, function(response) {
+                console.log(response);
+            });
+        };
+        resetButton.onclick = function() {
+            get('/reset', function(response) {
+                console.log(response);
+            });
+        };
+        </script>
+    </body>
+</html>
